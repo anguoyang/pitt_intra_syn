@@ -31,7 +31,7 @@ end
 
 
 figure;
-% set(gcf,'Visible','off');
+ set(gcf,'Visible','off');
 idx_ch_face=1;
 idx_ex_face=1;
 idx_ch_lm=1;
@@ -66,6 +66,9 @@ close all;
 end
 function [im,idx]=drawonlc(im,im_idx,singlePercept,idx,FPS)
 hold on;
+while  im_idx>(mms2frame(singlePercept.events{idx}.starttime,FPS))
+    idx=idx+1;
+end
 while  im_idx==(mms2frame(singlePercept.events{idx}.starttime,FPS))
 rectangle('position',singlePercept.events{idx}.value,'edgecolor','r');    
 idx=idx+1;
@@ -74,6 +77,10 @@ end
 end
 
 function [im,idx]=drawonlm(im,im_idx,singlePercept,idx,FPS)
+
+while im_idx>(mms2frame(singlePercept.events{idx}.starttime,FPS))
+    idx=idx+1;
+end
 
 while  im_idx==(mms2frame(singlePercept.events{idx}.starttime,FPS))
 pts=int32(singlePercept.events{idx}.value);
