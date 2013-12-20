@@ -110,7 +110,9 @@ end
  % clean up the temp_info:
 %  delete(fullfile(tempinfo_dir,syninfo_file));
  rmdir(fullfile(file_path1,file_name1));
+ if exist(fullfile(file_path1,[file_name1,'_mat']),'dir')
  rmdir(fullfile(file_path1,[file_name1,'_mat']));
+ end
  rmdir(fullfile(file_path2,file_name2));
  rmdir(fullfile(file_path2,[file_name2,'_mat']));
 end
